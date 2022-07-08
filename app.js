@@ -140,6 +140,7 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
+    personInfo += `ID: ${person.id}\n`;
     personInfo += `Gender: ${person.gender}\n`;
     personInfo += `DOB: ${person.dob}\n`;
     personInfo += `Weight: ${person.height}\n`;
@@ -190,3 +191,12 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(person, people) {
+    let personFamily = people.filter(function (el){
+        if (person.id == el.currentSpouse){
+            return true
+        }
+    });
+    alert(personFamily);
+}
