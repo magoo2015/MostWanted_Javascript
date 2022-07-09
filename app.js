@@ -218,7 +218,7 @@ function searchSpouse(person, people) {
 
 function searchParents(person, people) {
     let arr = people.filter(function(el){
-        if ((person.parents).includes(el.ed)){
+        if ((person.parents).includes(el.id)){
             return true;
         }
     });
