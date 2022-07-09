@@ -147,6 +147,8 @@ function displayPerson(person) {
     personInfo += `Weight: ${person.weight}\n`;
     personInfo += `Eye color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
+    personInfo += `Parents: ${person.parents}\n`;
+    personInfo += `Spouse: ${person.currentSpouse}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
     alert(personInfo);
 }
@@ -194,9 +196,9 @@ function chars(input) {
 
 function findPersonFamily(person, people) {
     let personFamily = people.filter(function (el){
-        if (person.id == el.currentSpouse){
-            return true
-        }
+        return person.id == el.currentSpouse;
+            
+        
     });
-    alert(personFamily);
+    displayPeople(personFamily);
 }
