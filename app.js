@@ -194,13 +194,67 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-function findPersonFamily(person, people) {
-    let displayFamily = []
-    let spouse = people.filter(function (el){
-        return person.id == el.currentSpouse;
-            
-        
+
+function searchSiblings(person, people){
+    let arr = people.filter(function(el){
+        if (person.id == el.id){
+            return false;
+        }
+        if(person.parents.includes(el.parents[0]) || person.parents.includes(el.parents[1])){
+            return true;
+        };
     });
-    displayFamily = [spouse]
-    displayPeople(displayFamily);
+    return arr;
 }
+
+function searchSpouse(person, people) {
+    let arr = people.filter(function(el){
+        if (el.currentSpouse == person.id) {
+            return true;
+        }
+    });
+    return arr;
+}
+
+function searchParents(person, people) {
+    let arr = people.filter(function(el){
+        if ((person.parents).includes(el.ed)){
+            return true;
+        }
+    });
+    return arr;
+}
+
+function findPersonFamily(person, people){
+    let arr = "";
+    let siblings = searchSiblings(person, people);
+    let spouse = searchSpouse(person, people);
+    let parents = searchParents(person, people)
+
+    if (siblings != null){
+        for(let i = 0; i < siblings.length; i++){
+            arr += `siblings: ${siblings[i].firstName} ${siblings[i].lastName}\n`
+        }
+    }
+
+    if (spouse != null){
+        for(let i = 0; i < spouse.length; i++){
+            arr += `spouse: ${spouse[i].firstName} ${spouse[i].lastName}\n`
+        }
+    }
+
+    if (parents != null){
+        for(let i = 0; i < parents.length; i++){
+            arr += `parents: ${parents[i].firstName} ${parents[i].lastName}\n`
+        }
+    }
+    return arr;
+}
+    
+    
+    
+    
+    
+    
+    
+    
