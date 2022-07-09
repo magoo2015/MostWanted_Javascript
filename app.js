@@ -195,10 +195,12 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 function findPersonFamily(person, people) {
-    let personFamily = people.filter(function (el){
+    let displayFamily = []
+    let spouse = people.filter(function (el){
         return person.id == el.currentSpouse;
             
         
     });
-    displayPeople(personFamily);
+    displayFamily = [spouse]
+    displayPeople(displayFamily);
 }
