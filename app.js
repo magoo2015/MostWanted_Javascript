@@ -271,8 +271,8 @@ function findPersonDescendants(person, people){
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
 
-function searchByTrait(people) {
-    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Eye Color\n5: Occupation\n6: DOB\n7:", integers);
+function searchByTraits(people) {
+    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Eye Color\n5: Occupation\n6: DOB\n7: Restart", chars);
     let traitPerson = [];
     switch(traitInput){
         case"1":
@@ -298,10 +298,38 @@ function searchByTrait(people) {
         break;
         default:
             alert("Enter a valid selection.");
-            return searchByTrait(people);
+            return searchByTraits(people);
+    }
+    if (traitPerson.length > 1){
+        displayPeople(traitPerson);
+        searchByTraits(traitPerson);
+    } else if (traitPerson.length === 1){
+        let traitPerson =traitPerson[0];
+        mainMenu(traitPerson, people);
+    } else {
+        app(people);
     }
 }
     
+
+//No matching trait found
+function noReturnResults(){
+    alert("Could not find a trait match!");
+}
+
+function genderSearch(people){
+    let choice = promptFor("Male or female", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.gender === choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
     
     
     
