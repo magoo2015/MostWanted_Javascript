@@ -251,7 +251,29 @@ function findPersonFamily(person, people){
     return arr;
 }
 
+function findDescendant(person, people){
+    let searchedDescend = people.filter(function(el){
+        for(let i = 0; i < el.parents.length; i++)
+        if(el.parents[i] == person.id){
+            return true;
+        }
+    });
+    return searchedDescend
+}
+//still broke returns object:object
+function findPersonDescendants(person, people){
+    let descendants = findDescendant(person, people);
+    for(let i = 0; i < descendants.length; i++){
+        descendants = descendants.concat(findPersonDescendants(descendants[i], people));
+    }
+    return descendants;
+}
 
+//Traits are Gender, Height, Weight, DOB, Eye Color, Occupation
+
+function searchByTrait(people) {
+    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: ")
+}
     
     
     
