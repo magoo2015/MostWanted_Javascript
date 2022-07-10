@@ -250,21 +250,8 @@ function findPersonFamily(person, people){
     }
     return arr;
 }
-    
-function findPersonDescendants(person, people){
-    let findDescendants = person.parents;
-    descendants = [];
-    if (findDescendants?.length || 0){
-        return("No descendants found.");
-    }
-    for(let i = 0; i < findDescendants.length; i++){
-        findDescendants = findDescendants.concat(
-            findPersonDescendants(findDescendants[i])
 
-        );
-        return descendants;
-    }
-}
+
     
     
     
