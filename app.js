@@ -269,10 +269,37 @@ function findPersonDescendants(person, people){
     return descendants;
 }
 
-//Traits are Gender, Height, Weight, DOB, Eye Color, Occupation
+//Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
 
 function searchByTrait(people) {
-    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: ")
+    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Eye Color\n5: Occupation\n6: DOB\n7:", integers);
+    let traitPerson = [];
+    switch(traitInput){
+        case"1":
+        traitPerson = genderSearch(people);
+        break;
+        case"2":
+        traitPerson = heightSearch(people);
+        break;
+        case"3":
+        traitPerson = occupationSearch(people);
+        break;
+        case"4":
+         traitPerson = weightSearch(people);
+         break;
+        case"5":
+        traitPerson = dobSearch(people);
+        break;
+        case"6":
+        traitPerson = eyeColorSearch(people);
+        break;
+        case"7"://restart
+        app(people);
+        break;
+        default:
+            alert("Enter a valid selection.");
+            return searchByTrait(people);
+    }
 }
     
     
