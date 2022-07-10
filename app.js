@@ -272,7 +272,7 @@ function findPersonDescendants(person, people){
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
 
 function searchByTraits(people) {
-    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Eye Color\n5: Occupation\n6: DOB\n7: Restart", chars);
+    let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Occupation\n5: DOB\n6: Eye Color\n7: Restart", chars);
     let traitPerson = [];
     switch(traitInput){
         case"1":
@@ -282,10 +282,10 @@ function searchByTraits(people) {
         traitPerson = heightSearch(people);
         break;
         case"3":
-        traitPerson = occupationSearch(people);
+        traitPerson = weightSearch(people);
         break;
         case"4":
-         traitPerson = weightSearch(people);
+         traitPerson = occupationSearch(people);
          break;
         case"5":
         traitPerson = dobSearch(people);
@@ -304,8 +304,8 @@ function searchByTraits(people) {
         displayPeople(traitPerson);
         searchByTraits(traitPerson);
     } else if (traitPerson.length === 1){
-        let traitPerson =traitPerson[0];
-        mainMenu(traitPerson, people);
+        let foundPerson = traitPerson[0];
+        mainMenu(foundPerson, people);
     } else {
         app(people);
     }
@@ -321,6 +321,76 @@ function genderSearch(people){
     let choice = promptFor("Male or female", chars);
     let traitPerson = people.filter(function(el){
         if(el.gender === choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
+
+function heightSearch(people){
+    let choice = promptFor("What is the person's height(inches)?", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.height == choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
+
+function weightSearch(people){
+    let choice = promptFor("What is the person's weight?", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.weight == choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
+
+function occupationSearch(people){
+    let choice = promptFor("What is the person's occupation?", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.occupation == choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
+
+function dobSearch(people){
+    let choice = promptFor("What is the person's Date of birth?", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.dob == choice){
+            return true;
+        }
+    });
+    if(traitPerson === undefined || traitPerson.length === 0){
+        noReturnResults();
+        return app(people);
+    }
+    return traitPerson;
+}
+
+function eyeColorSearch(people){
+    let choice = promptFor("What is the person's Eye color?", chars);
+    let traitPerson = people.filter(function(el){
+        if(el.eyeColor == choice){
             return true;
         }
     });
