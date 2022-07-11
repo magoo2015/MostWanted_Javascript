@@ -266,7 +266,21 @@ function findPersonDescendants(person, people){
     return `Descendants:${searchedDescend}`
 }
 
-//Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
+//Traits are Gender, Height,Occupation,Weight, DOB, Eye Color,
+//Validate integers
+function integer(input){
+    if(parseInt(input)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+//Validate gender
+function gendervalidate(input){
+    return input.toLowerCase() == "male" || input.toLowerCase() == "female";
+}
 
 function searchByTraits(people) {
     let traitInput = promptFor("Select a trait to search by\n1: Gender\n2: Height\n3: Weight\n4: Occupation\n5: DOB\n6: Eye Color\n7: Restart", chars);
@@ -315,7 +329,7 @@ function noReturnResults(){
 }
 
 function genderSearch(people){
-    let choice = promptFor("Male or female", chars);
+    let choice = promptFor("Male or female", gendervalidate);
     let traitPerson = people.filter(function(el){
         if(el.gender === choice){
             return true;
@@ -329,7 +343,7 @@ function genderSearch(people){
 }
 
 function heightSearch(people){
-    let choice = promptFor("What is the person's height(inches)?", chars);
+    let choice = promptFor("What is the person's height(inches)?", integer);
     let traitPerson = people.filter(function(el){
         if(el.height == choice){
             return true;
@@ -343,7 +357,7 @@ function heightSearch(people){
 }
 
 function weightSearch(people){
-    let choice = promptFor("What is the person's weight?", chars);
+    let choice = promptFor("What is the person's weight?", integer);
     let traitPerson = people.filter(function(el){
         if(el.weight == choice){
             return true;
