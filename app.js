@@ -67,7 +67,7 @@ function mainMenu(person, people) {
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+            //alert(personInfo);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
@@ -79,8 +79,7 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            //alert(personDescendants);
-            alert(person[0].firstName + " " + person[0].lastName + "'s descendants: \n\n" + displayPeople(findPersonDescendants(person[0], people)));
+            alert(personDescendants);
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -122,6 +121,7 @@ function searchByName(people) {
  * to the user in the form of an alert().
  * @param {Array} people        A collection of person objects.
  */
+
 function displayPeople(people) {
     alert(
         people
@@ -254,12 +254,22 @@ function findPersonFamily(person, people){
 
 //Still broke.  Just returns none.
 function findDescendants(person, people){
+    //BASE Case
     let arr = people.filter(function(el){
         for (let i = 0; i < el.parents.length; i++)
         if(el.parents[i] == person.id){
             return true;
         }
     });
+    if (arr.length === 0){
+        return [person]
+
+    }
+    //recursive case
+
+    for (let i = 0; i < arr.length; i++){
+        arr = arr.concat(findPersonDescendants(arr[i], people));
+    }
     return arr;
 }
 
@@ -270,7 +280,6 @@ function findPersonDescendants(person, people){
     }
     return descendants;
 }
-
 
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color,
@@ -422,7 +431,53 @@ function eyeColorSearch(people){
 //multitrait search
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
