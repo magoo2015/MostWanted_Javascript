@@ -79,8 +79,8 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
-            alert(personDescendants);
-            //alert(person[0].firstName + " " + person[0].lastName + "'s descendants: \n\n" + displayPeople(findPersonDescendants(person[0], people)));
+            //alert(personDescendants);
+            alert(person[0].firstName + " " + person[0].lastName + "'s descendants: \n\n" + displayPeople(findPersonDescendants(person[0], people)));
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -253,18 +253,25 @@ function findPersonFamily(person, people){
 }
 
 //Still broke.  Just returns none.
-function findPersonDescendants(person, people){
-    let searchedDescend = ' None';
-    let descendants = people.filter(function(el){
-        return el.parents.includes(person.id);
-    }).map(function(el){
-        return ` ${el.firstName} ${el.lastName}`;
+function findDescendants(person, people){
+    let arr = people.filter(function(el){
+        for (let i = 0; i < el.parents.length; i++)
+        if(el.parents[i] == person.id){
+            return true;
+        }
     });
-    if (descendants.length > 0){
-        searchedDescend = descendants
-    }
-    return `Descendants:${searchedDescend}`
+    return arr;
 }
+
+function findPersonDescendants(person, people){
+    let descendants = findDescendants(person, people);
+    for (let i = 0; i < descendants.length; i++){
+        descendants = descendants.concat(findPersonDescendants(descendants[i], people));
+    }
+    return descendants;
+}
+
+
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color,
 //Validate integers
@@ -311,13 +318,13 @@ function searchByTraits(people) {
             alert("Enter a valid selection.");
             return searchByTraits(people);
     }
-    if (traitPerson.length > 1){
-        displayPeople(traitPerson);
+    if (traitPerson.length > 1) {
+        alert("Results: \n\n" + displayPeople(traitPerson));
         searchByTraits(traitPerson);
-    } else if (traitPerson.length === 1){
-        let foundPerson = traitPerson[0];
-        mainMenu(foundPerson, people);
-    } else {
+    }else if (traitPerson.length === 1){
+        alert(traitPerson);
+        return traitPerson
+    }else {
         app(people);
     }
 }
