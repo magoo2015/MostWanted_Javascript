@@ -266,17 +266,6 @@ function findPersonDescendants(person, people){
     return `Descendants:${searchedDescend}`
 }
 
-
-
-function displayPeople(people){
-    return people.map(function(person){
-        return person.firstName + " " + person.lastName+"\n";
-    }).join("\n");
-}
-
-
-
-
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
 
 function searchByTraits(people) {
@@ -409,7 +398,9 @@ function eyeColorSearch(people){
     return traitPerson;
 }
     
-    
+//multitrait search
+
+
     
     
     
