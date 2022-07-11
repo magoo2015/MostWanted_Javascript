@@ -80,6 +80,7 @@ function mainMenu(person, people) {
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
+            //alert(person[0].firstName + " " + person[0].lastName + "'s descendants: \n\n" + displayPeople(findPersonDescendants(person[0], people)));
             break;
         case "restart":
             // Restart app() from the very beginning
@@ -251,23 +252,30 @@ function findPersonFamily(person, people){
     return arr;
 }
 
-function findDescendant(person, people){
-    let searchedDescend = people.filter(function(el){
-        for(let i = 0; i < el.parents.length; i++)
-        if(el.parents[i] == person.id){
-            return true;
-        }
-    });
-    return searchedDescend
-}
-//still broke returns object:object
+//Still broke.  Just returns none.
 function findPersonDescendants(person, people){
-    let descendants = findDescendant(person, people);
-    for(let i = 0; i < descendants.length; i++){
-        descendants = descendants.concat(findPersonDescendants(descendants[i], people));
+    let searchedDescend = ' None';
+    let descendants = people.filter(function(el){
+        return el.parents.includes(person.id);
+    }).map(function(el){
+        return ` ${el.firstName} ${el.lastName}`;
+    });
+    if (descendants.length > 0){
+        searchedDescend = descendants
     }
-    return descendants;
+    return `Descendants:${searchedDescend}`
 }
+
+
+
+function displayPeople(people){
+    return people.map(function(person){
+        return person.firstName + " " + person.lastName+"\n";
+    }).join("\n");
+}
+
+
+
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color, 
 
