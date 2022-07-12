@@ -254,11 +254,11 @@ function findPersonFamily(person, people){
 }
 
 //Still broke.  Just returns none.
-function findPersonDescendants(person, people){
+function findDescendants(person, people){
     //BASE Case
     let arr = people.filter(function(el){
         for (let i = 0; i < el.parents.length; i++)
-        if(el.parents.includes(person.id)){
+        if(el.parents[i] == person.id){
             return true;
         }
     });
@@ -273,7 +273,7 @@ function findPersonDescendants(person, people){
     }
     return arr;
 }
-/*
+
 function findPersonDescendants(person, people){
     let descendants = findDescendants(person, people);
     for (let i = 0; i < descendants.length; i++){
@@ -281,7 +281,7 @@ function findPersonDescendants(person, people){
     }
     return descendants;
 }
-*/
+
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color,
 //Validate integers
