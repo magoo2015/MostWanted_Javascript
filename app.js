@@ -79,6 +79,7 @@ function mainMenu(person, people) {
             //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
             // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
+            console.log(personDescendants);
             alert(personDescendants);
             break;
         case "restart":
@@ -253,16 +254,16 @@ function findPersonFamily(person, people){
 }
 
 //Still broke.  Just returns none.
-function findDescendants(person, people){
+function findPersonDescendants(person, people){
     //BASE Case
     let arr = people.filter(function(el){
         for (let i = 0; i < el.parents.length; i++)
-        if(el.parents[i] == person.id){
+        if(el.parents.includes(person.id)){
             return true;
         }
     });
     if (arr.length === 0){
-        return [person]
+        return [person];
 
     }
     //recursive case
@@ -272,7 +273,7 @@ function findDescendants(person, people){
     }
     return arr;
 }
-
+/*
 function findPersonDescendants(person, people){
     let descendants = findDescendants(person, people);
     for (let i = 0; i < descendants.length; i++){
@@ -280,7 +281,7 @@ function findPersonDescendants(person, people){
     }
     return descendants;
 }
-
+*/
 
 //Traits are Gender, Height,Occupation,Weight, DOB, Eye Color,
 //Validate integers
